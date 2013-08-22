@@ -38,8 +38,10 @@ class Admin::ContentController < Admin::BaseController
   end
 
   def merge
-    Article.merge(params[:id], params[:merge_with])
-    redirect_to '/admin/content'
+     @article1 = Article.find_by_id(params[:id])
+     @article2 = Article.find_by_id(params[:merge_with])
+     @article1.merge_with(@article2)
+     redirect_to("/admin/content")
   end
 
   def destroy
